@@ -46,10 +46,10 @@ def create_user():
     else:
         detected_language = detect_language(body)
         detected_lang_data = json.loads(detected_language)  # Asumiendo que detect_language devuelve JSON con datos de idioma
-        add_phone_number(from_number, detected_lang_data['language'], detected_lang_data['iso_code'])
+        add_phone_number(from_number, detected_lang_data['language'], detected_lang_data['ISO 639-1'])
 
     # Traducir el cuerpo del mensaje
-    translated_text = translate_text(body, detected_language, 'en')
+    translated_text = translate_text(body, detected_language, phone_info["ISO 639-1"])
     print("Detected Language:", detected_language)
     print("Translated Text:", translated_text)
 
