@@ -56,7 +56,7 @@ def create_user():
             return "Error: La respuesta de detección de idioma no contiene los datos necesarios."
 
     # Traducir el cuerpo del mensaje usando el idioma almacenado en el CSV
-    translated_text = translate_text(body, detected_language, 'en')
+    translated_text = translate_text(body, detected_language, iso_code)
     print("Detected Language:", detected_language)
     print("Translated Text:", translated_text)
 
