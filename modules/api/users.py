@@ -13,7 +13,8 @@ load_dotenv()
 # Variable global para almacenar el número de destino actual
 current_to_number = None
 BUSINESS_OWNER_PHONE_NUMBER = os.getenv("BUSINESS_OWNER_PHONE_NUMBER")
-BUSINESS_OWNER_LANGUAGE = os.getenv("BUSINESS_OWNER_LANGUAGE", "en")  # Idioma del propietario del negocio, por defecto 'en'
+BUSINESS_OWNER_LANGUAGE_NAME = os.getenv("BUSINESS_OWNER_LANGUAGE_NAME", "English")  # Nombre del idioma del propietario del negocio, por defecto 'English'
+BUSINESS_OWNER_LANGUAGE_CODE = os.getenv("BUSINESS_OWNER_LANGUAGE_CODE", "en")  # Código ISO del idioma del propietario del negocio, por defecto 'en'
 CSV_FILEPATH = os.getenv("CSV_FILEPATH", "data.csv")  # Path al CSV, por defecto "data.csv"
 
 # Inicializar el manejador del CSV
@@ -54,7 +55,7 @@ def create_user():
     print("Detected Language:", language, "ISO 639-1:", iso_code)
 
     # Translate the body of the message to the business owner's language
-    translated_text = translate_text(body, language, BUSINESS_OWNER_LANGUAGE)
+    translated_text = translate_text(body, language, BUSINESS_OWNER_LANGUAGE_NAME, BUSINESS_OWNER_LANGUAGE_CODE)
     print("Translated Text:", translated_text)
 
     # Convert the translated text to JSON format
