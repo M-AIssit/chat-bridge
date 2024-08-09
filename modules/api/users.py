@@ -44,22 +44,36 @@ def create_user():
     print("Number of Media:", num_media)
     print("Number of Segments:", num_segments)
 
-    if from_number != BUSINESS_OWNER_PHONE_NUMBER:
+    formatted_from_number = format_whatsapp_number(from_number) if not from_number.startswith('whatsapp:') else from_number
+
+    if formatted_from_number != BUSINESS_OWNER_PHONE_NUMBER:
         # Check if the phone number is already in the CSV
-        language, iso_code = csv_handler.get_language_for_number(from_number)
+        language, iso_code = csv_handler.get_language_for_number(formatted_from_number)
         if not language:
-            # If not, detect the language and add it to the CSV
             detected_language_json = json.loads(detect_language(body))
             language = detected_language_json.get('language', 'English')
             iso_code = detected_language_json.get('ISO 639-1', 'en')
-            csv_handler.add_number_language(from_number, language, iso_code)
+            csv_handler.add_number_language(formatted_from_number, language, iso_code)
         print("Detected Language:", language, "ISO 639-1:", iso_code)
 
         # Translate the body of the message to the business owner's language
         translated_text = translate_text(body, iso_code, BUSINESS_OWNER_LANGUAGE_CODE)
     else:
         # For messages from the business owner, handle differently
-        recipient_language, recipient_iso_code = csv_handler.get_language_for_number(current_to_number)
+        if body.strip().lower().startswith("to:"):
+            potential_new_to_number = format_whatsapp_number(body[3:].strip())
+            recipient_language, recipient_iso_code = csv_handler.get_language_for_number(potential_new_to_number)
+            if not recipient_language:
+                recipient_language = BUSINESS_OWNER_LANGUAGE_NAME
+                recipient_iso_code = BUSINESS_OWNER_LANGUAGE_CODE
+            current_to_number = potential_new_to_number
+            print(f"Current destination number updated to: {current_to_number} with default language settings.")
+            return f"Número de destino actualizado a: {current_to_number}, idioma predeterminado: {recipient_language}"
+        else:
+            recipient_language, recipient_iso_code = csv_handler.get_language_for_number(current_to_number)
+            if not recipient_language:
+                recipient_language = BUSINESS_OWNER_LANGUAGE_NAME
+                recipient_iso_code = BUSINESS_OWNER_LANGUAGE_CODE
         translated_text = translate_text(body, BUSINESS_OWNER_LANGUAGE_CODE, recipient_iso_code)
 
     print("Translated Text:", translated_text)
@@ -71,7 +85,7 @@ def create_user():
     # Print the translated text JSON
     print("Translated Text JSON:", translated_text_json)
 
-    if from_number != BUSINESS_OWNER_PHONE_NUMBER:
+    if formatted_from_number != BUSINESS_OWNER_PHONE_NUMBER:
         # Case 1: The message is not from the BUSINESS_OWNER_PHONE_NUMBER
         send_whatsapp_message(translated_text_json, BUSINESS_OWNER_PHONE_NUMBER)
     else:
@@ -81,12 +95,12 @@ def create_user():
             translated_text_json['output'] = "Session ended."
             send_whatsapp_message(translated_text_json, BUSINESS_OWNER_PHONE_NUMBER)
         elif body.startswith("to:"):
-            preformatted_current_to_number = body[3:].strip()
+            preformatted_current_to_number = format_whatsapp_number(body[3:].strip())
             if not validate_whatsapp_number(preformatted_current_to_number):
                 print("Invalid phone -> to")
                 if not is_valid_phone_number(preformatted_current_to_number):
                     raise ValueError("Invalid phone number")
-                current_to_number = format_whatsapp_number(preformatted_current_to_number)
+                current_to_number = preformatted_current_to_number
                 print('to after format', current_to_number)
             else:
                 current_to_number = preformatted_current_to_number
