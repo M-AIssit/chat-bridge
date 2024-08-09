@@ -38,6 +38,16 @@ class CSVHandler:
             if not file.tell():  # Si el archivo está vacío, escribir el encabezado
                 writer.writeheader()
             writer.writerows(data)
+        self.data_cache = None  # Invalidar el caché después de escribir
+
+    def write_full_csv(self, data):
+        # Escribir todo el CSV de nuevo, usado para actualizaciones
+        with open(self.filepath, mode='w', newline='') as file:
+            fieldnames = ['Phone_number', 'Language', 'ISO_639-1']
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(data)
+        self.data_cache = None  # Invalidar el caché después de escribir
 
     def get_language_for_number(self, phone_number):
         data = self.read_csv()
@@ -50,5 +60,18 @@ class CSVHandler:
         # Verificar si ya está en el caché antes de añadir
         if self.get_language_for_number(phone_number) == (None, None):
             new_entry = {'Phone_number': phone_number, 'Language': language, 'ISO_639-1': iso}
-            self.data_cache.append(new_entry)  # Añadir a la caché
+            if self.data_cache is not None:
+                self.data_cache.append(new_entry)  # Añadir a la caché
             self.write_csv([new_entry])  # Añadir solo la nueva entrada al archivo
+
+    def update_language_for_number(self, phone_number, language, iso):
+        data = self.read_csv()
+        updated = False
+        for row in data:
+            if row['Phone_number'] == phone_number:
+                row['Language'] = language
+                row['ISO_639-1'] = iso
+                updated = True
+        if updated:
+            self.write_full_csv(data)
+        return updated
