@@ -10,40 +10,27 @@ from modules.CSVHandler import CSVHandler
 # Load the .env file
 load_dotenv()
 
-# Variable global para almacenar el número de destino actual
+# Global variable to store the current destination number
 current_to_number = None
 BUSINESS_OWNER_PHONE_NUMBER = os.getenv("BUSINESS_OWNER_PHONE_NUMBER")
-BUSINESS_OWNER_LANGUAGE_NAME = os.getenv("BUSINESS_OWNER_LANGUAGE_NAME", "English")  # Nombre del idioma del propietario del negocio, por defecto 'English'
-BUSINESS_OWNER_LANGUAGE_CODE = os.getenv("BUSINESS_OWNER_LANGUAGE_CODE", "en")  # Código ISO del idioma del propietario del negocio, por defecto 'en'
-CSV_FILEPATH = os.getenv("CSV_FILEPATH", "data.csv")  # Path al CSV, por defecto "data.csv"
+BUSINESS_OWNER_LANGUAGE_NAME = os.getenv("BUSINESS_OWNER_LANGUAGE_NAME", "English")  # Default language of the business owner
+BUSINESS_OWNER_LANGUAGE_CODE = os.getenv("BUSINESS_OWNER_LANGUAGE_CODE", "en")  # ISO code of the business owner's language
+CSV_FILEPATH = os.getenv("CSV_FILEPATH", "data.csv")  # Path to the CSV
 
-# Inicializar el manejador del CSV
+# Initialize the CSV handler
 csv_handler = CSVHandler.CSVHandler(CSV_FILEPATH)
 
 def create_user():
     global current_to_number
 
     message_sid = request.form.get('MessageSid')
-    sms_sid = request.form.get('SmsSid')
-    sms_message_sid = request.form.get('SmsMessageSid')
-    account_sid = request.form.get('AccountSid')
-    messaging_service_sid = request.form.get('MessagingServiceSid')
     from_number = request.form.get('From')
-    to_number = request.form.get('To')
     body = request.form.get('Body')
-    num_media = request.form.get('NumMedia')
-    num_segments = request.form.get('NumSegments')
     print("Message SID:", message_sid)
-    print("SMS SID:", sms_sid)
-    print("SMS Message SID:", sms_message_sid)
-    print("Account SID:", account_sid)
-    print("Messaging Service SID:", messaging_service_sid)
     print("From Number:", from_number)
-    print("To Number:", to_number)
     print("Body:", body)
-    print("Number of Media:", num_media)
-    print("Number of Segments:", num_segments)
 
+    # Ensure number format includes "whatsapp:" prefix
     formatted_from_number = format_whatsapp_number(from_number) if not from_number.startswith('whatsapp:') else from_number
 
     if formatted_from_number != BUSINESS_OWNER_PHONE_NUMBER:
@@ -59,16 +46,16 @@ def create_user():
         # Translate the body of the message to the business owner's language
         translated_text = translate_text(body, iso_code, BUSINESS_OWNER_LANGUAGE_CODE)
     else:
-        # For messages from the business owner, handle differently
+        # Handle messages from the business owner
         if body.strip().lower().startswith("to:"):
             potential_new_to_number = format_whatsapp_number(body[3:].strip())
             recipient_language, recipient_iso_code = csv_handler.get_language_for_number(potential_new_to_number)
             if not recipient_language:
+                # Default to business owner's language if not found
                 recipient_language = BUSINESS_OWNER_LANGUAGE_NAME
                 recipient_iso_code = BUSINESS_OWNER_LANGUAGE_CODE
             current_to_number = potential_new_to_number
-            print(f"Current destination number updated to: {current_to_number} with default language settings.")
-            return f"Número de destino actualizado a: {current_to_number}, idioma predeterminado: {recipient_language}"
+            print(f"Destination number updated to: {current_to_number} with default language settings.")
         else:
             recipient_language, recipient_iso_code = csv_handler.get_language_for_number(current_to_number)
             if not recipient_language:
@@ -82,14 +69,11 @@ def create_user():
     translated_text_json = json.loads(translated_text)
     translated_text_json['from_number'] = from_number
 
-    # Print the translated text JSON
     print("Translated Text JSON:", translated_text_json)
 
     if formatted_from_number != BUSINESS_OWNER_PHONE_NUMBER:
-        # Case 1: The message is not from the BUSINESS_OWNER_PHONE_NUMBER
         send_whatsapp_message(translated_text_json, BUSINESS_OWNER_PHONE_NUMBER)
     else:
-        # Case 2: The message is from the BUSINESS_OWNER_PHONE_NUMBER
         if body.strip().lower() == "exit":
             current_to_number = None
             translated_text_json['output'] = "Session ended."
