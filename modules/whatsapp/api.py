@@ -5,29 +5,19 @@ from .utils import validate_whatsapp_number, format_whatsapp_number, is_valid_ph
 
 
 def send_whatsapp_message(body, to, from_=TWILIO_PHONE_NUMBER):
-    
-    if not validate_whatsapp_number(to):    
+    # Asegurarse de que el número esté formateado correctamente antes de validar
+    formatted_to = format_whatsapp_number(to)
+
+    if not validate_whatsapp_number(formatted_to):
         print("Invalid phone -> to")
-        if not is_valid_phone_number(to):
-            raise ValueError("Invalid phone number")
-        to = format_whatsapp_number(to)
-        print('to after format', to)
-
-    if to.startswith('whatsapp:+52'):
-        print('to starts with +52')
-        to = 'whatsapp:+521' + to[12:]
-        print('to after format', to)
-
-    # Extract 'output' attribute from body_json into a message var
+        raise ValueError("Invalid phone number")
+    
     message = body['output']
-
-    # Find your Account SID and Auth Token at twilio.com/console
-    # and set the environment variables. See http://twil.io/secure
     client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
     message = client.messages.create(
-        from_=from_,    #"whatsapp:+14155238886"
+        from_=from_,
         body=message,
-        to=to,          #"whatsapp:+14155238884"
+        to=formatted_to,  # Utiliza el número formateado
     )
     print(message.body)
 

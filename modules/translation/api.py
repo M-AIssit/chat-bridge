@@ -69,11 +69,11 @@ def detect_language(text):
 
     # Create the prompt with a clear instruction and example
     prompt = (f"Detect the language of the following text and return the result in JSON format "
-              f"including the language name and its ISO 639-1 code. Here are examples:\n"
+              f"including the language name and its ISO_639-1 code. Here are examples:\n"
               f"Text: 'Bonjour, comment ça va ?'\n"
-              f"Output: {{'language': 'French', 'ISO 639-1': 'fr'}}\n"
+              f"Output: {{'language': 'French', 'ISO_639-1': 'fr'}}\n"
               f"Text: 'Hello, how are you?'\n"
-              f"Output: {{'language': 'English', 'ISO 639-1': 'en'}}\n\n"
+              f"Output: {{'language': 'English', 'ISO_639-1': 'en'}}\n\n"
               f"Text: '{text}'\n"
               f"Output:")
 
