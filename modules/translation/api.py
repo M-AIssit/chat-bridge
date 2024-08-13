@@ -1,21 +1,38 @@
 from modules.translation.hf_translation import HuggingFaceTranslator
 from .constants import GEMINI_API_KEY, MODEL_ID
 import google.generativeai as genai
+import json
 
 genai.configure(api_key=GEMINI_API_KEY)
 hf_translator = HuggingFaceTranslator()
 
 def translate_text(text, source_lang_name, target_lang_name, source_lang_code, target_lang_code):
-    # Attempt translation using Hugging Face models
-    translated_text = hf_translator.translate(text, source_lang_code, target_lang_code)
-    if translated_text:
-        return translated_text
-    else:
-        # Fallback to Gemini API if Hugging Face translation fails
-        return translate_text_gemini(text, source_lang_name, target_lang_name)
+    try:
+        # Intentar traducción usando los modelos de Hugging Face
+        translated_text = hf_translator.translate(text, source_lang_code, target_lang_code)
+        if translated_text:
+            print("Using Hugging Face for translation.")
+            return json.dumps(translated_text)  # Devolver directamente el JSON sin anidación
+    except Exception as e:
+        print(f"Error with Hugging Face translation: {str(e)}")
+
+    try:
+        # Usar la API de Gemini como alternativa si la traducción de Hugging Face falla
+        print("Falling back to Gemini API for translation.")
+        translated_text = translate_text_gemini(text, source_lang_name, target_lang_name)
+        if translated_text:
+            print("Using Gemini API for translation.")
+            return translated_text  # Asegurar que Gemini también devuelve el JSON correcto
+    except Exception as e:
+        print(f"Error with Gemini API translation: {str(e)}")
+        return json.dumps({"error": "Translation failed with both services."})
+
+    # Si se llega a este punto, significa que la traducción de Hugging Face fue None sin lanzar una excepción
+    return json.dumps({"error": "No translation available from Hugging Face, and Gemini API not attempted."})
+
 
 def translate_text_gemini(text, source_lang, target_lang):
-    model = genai.GenerativeModel(MODEL_ID, generation_config= {"response_mime_type": "application/json"})  # Using a specific Gemini model
+    model = genai.GenerativeModel(MODEL_ID, generation_config={"response_mime_type": "application/json"})  # Usando un modelo específico de Gemini
     prompt = f"""
 Translate '{text}' from {source_lang} to {target_lang}.
 
@@ -45,38 +62,35 @@ Here are examples:
     "target_lang_code": "fr"
 }}
 """
-    ## TO DO: 
-    ## Wrap between try and except
-
-    response = model.generate_content(prompt)
-    if response:
-        return response.text
-    else:
-        return '{"error": "Translation failed."}'
-    
+    # Manejo de excepciones alrededor del modelo de generación
+    try:
+        response = model.generate_content(prompt)
+        if response:
+            return json.dumps({"translated_text": response.text})  # Asegurar que el resultado esté en formato JSON
+        else:
+            return '{"error": "Translation failed."}'
+    except Exception as e:
+        print(f"Error generating content with Gemini: {str(e)}")
+        return '{"error": "Translation failed due to an exception."}'
 
 def detect_language(text):
     """
-    Detects the language of the provided text using the Gemini API by asking the model
-    to return the language in a structured JSON format, including the ISO 639-1 code.
-    
+    Detecta el idioma del texto proporcionado usando la API de Gemini, devolviendo el resultado en un formato JSON estructurado, incluyendo el código ISO 639-1.
+
     Args:
-    text (str): The text for which the language needs to be detected.
-    
+    text (str): El texto para el cual se necesita detectar el idioma.
+
     Returns:
-    str: JSON formatted string indicating the detected language and its ISO 639-1 code.
+    str: Cadena en formato JSON que indica el idioma detectado y su código ISO 639-1.
     """
 
-    
-
-    # Configure the API with your API key
+    # Configurar la API con tu clave
     genai.configure(api_key=GEMINI_API_KEY)
-
     
-    # Setup the model
-    model = genai.GenerativeModel(MODEL_ID, generation_config= {"response_mime_type": "application/json"})
+    # Configuración del modelo
+    model = genai.GenerativeModel(MODEL_ID, generation_config={"response_mime_type": "application/json"})
 
-    # Create the prompt with a clear instruction and example
+    # Crear el prompt con una instrucción clara y ejemplos
     prompt = (f"Detect the language of the following text and return the result in JSON format "
               f"including the language name and its ISO_639-1 code. Here are examples:\n"
               f"Text: 'Bonjour, comment ça va ?'\n"
@@ -86,12 +100,12 @@ def detect_language(text):
               f"Text: '{text}'\n"
               f"Output:")
 
-    ##TO DO: Wrap between try and except
-    ## Generate content from the model
-    response = model.generate_content(prompt)
-  
-    # Interpret the response to extract JSON formatted language information
-    if response:
-        return response.text
-    else:
-        return '{"error": "Language detection was inconclusive."}'
+    try:
+        response = model.generate_content(prompt)
+        if response:
+            return response.text
+        else:
+            return '{"error": "Language detection was inconclusive."}'
+    except Exception as e:
+        print(f"Error detecting language with Gemini: {str(e)}")
+        return '{"error": "Language detection failed due to an exception."}'

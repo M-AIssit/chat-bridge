@@ -1,4 +1,3 @@
-# modules/translation/hf_translation.py
 from transformers import MarianMTModel, MarianTokenizer
 
 class HuggingFaceTranslator:
@@ -30,6 +29,7 @@ class HuggingFaceTranslator:
             translated_tokens = model.generate(**encoded_text)
             # Decodificar los tokens traducidos.
             translated_text = tokenizer.decode(translated_tokens[0], skip_special_tokens=True)
-            return translated_text
+            # Devolver un diccionario con la traducción en formato JSON
+            return {"translated_text": translated_text}
         else:
             return None

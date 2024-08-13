@@ -7,7 +7,6 @@ from modules.whatsapp.utils import validate_whatsapp_number, format_whatsapp_num
 from modules.translation.api import detect_language, translate_text
 from modules.CSVHandler import CSVHandler
 
-
 # Load the .env file
 load_dotenv()
 
@@ -50,6 +49,7 @@ def create_user():
 
     if from_number != BUSINESS_OWNER_PHONE_NUMBER:
         # Caso 1: El mensaje no es de BUSINESS_OWNER_PHONE_NUMBER
+        translated_text_json['output'] = translated_text_json.get('translated_text', '')  # Asegurarse de que 'output' esté presente
         send_whatsapp_message(translated_text_json, BUSINESS_OWNER_PHONE_NUMBER)
     else:
         # Caso 2: El mensaje es de BUSINESS_OWNER_PHONE_NUMBER
@@ -61,7 +61,6 @@ def create_user():
             send_whatsapp_message(translated_text_json, BUSINESS_OWNER_PHONE_NUMBER)
         elif body.startswith("to:"):
             preformatted_current_to_number = body[3:].strip()
-
             if not validate_whatsapp_number(preformatted_current_to_number):
                 if not is_valid_phone_number(preformatted_current_to_number):
                     raise ValueError("Invalid phone number")
@@ -80,6 +79,7 @@ def create_user():
                 translated_text = translate_text(body, language, BUSINESS_OWNER_LANGUAGE_NAME, iso_code, BUSINESS_OWNER_LANGUAGE_CODE)
                 translated_text_json = json.loads(translated_text)
                 translated_text_json['from_number'] = BUSINESS_OWNER_PHONE_NUMBER
+                translated_text_json['output'] = translated_text_json.get('translated_text', '')  # Asegurarse de que 'output' esté presente
                 send_whatsapp_message(translated_text_json, current_to_number)
             else:
                 translated_text_json['output'] = "No se pudo determinar el idioma del destinatario."
