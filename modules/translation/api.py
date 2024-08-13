@@ -1,11 +1,20 @@
-#This file interacts directly with the Gemini API, handling all communications related to text translation and language detection.
-
+from modules.translation.hf_translation import HuggingFaceTranslator
 from .constants import GEMINI_API_KEY, MODEL_ID
 import google.generativeai as genai
 
 genai.configure(api_key=GEMINI_API_KEY)
+hf_translator = HuggingFaceTranslator()
 
-def translate_text(text, source_lang, target_lang):
+def translate_text(text, source_lang_name, target_lang_name, source_lang_code, target_lang_code):
+    # Attempt translation using Hugging Face models
+    translated_text = hf_translator.translate(text, source_lang_code, target_lang_code)
+    if translated_text:
+        return translated_text
+    else:
+        # Fallback to Gemini API if Hugging Face translation fails
+        return translate_text_gemini(text, source_lang_name, target_lang_name)
+
+def translate_text_gemini(text, source_lang, target_lang):
     model = genai.GenerativeModel(MODEL_ID, generation_config= {"response_mime_type": "application/json"})  # Using a specific Gemini model
     prompt = f"""
 Translate '{text}' from {source_lang} to {target_lang}.

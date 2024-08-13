@@ -17,7 +17,8 @@ current_to_language = None
 current_to_iso_code = None
 
 BUSINESS_OWNER_PHONE_NUMBER = os.getenv("BUSINESS_OWNER_PHONE_NUMBER")
-BUSINESS_OWNER_LANGUAGE_NAME = os.getenv("BUSINESS_OWNER_LANGUAGE_NAME", "English")
+BUSINESS_OWNER_LANGUAGE_NAME = os.getenv("BUSINESS_OWNER_LANGUAGE_NAME", "Spanish")
+BUSINESS_OWNER_LANGUAGE_CODE = os.getenv("BUSINESS_OWNER_LANGUAGE_CODE", "es")
 CSV_FILEPATH = os.getenv("CSV_FILEPATH", "data.csv")
 
 # Inicializar el manejador del CSV
@@ -40,7 +41,7 @@ def create_user():
     print("Detected Language:", language, "ISO 639-1:", iso_code)
 
     # Traducir el cuerpo del mensaje al idioma del propietario del negocio
-    translated_text = translate_text(body, language, BUSINESS_OWNER_LANGUAGE_NAME)
+    translated_text = translate_text(body, language, BUSINESS_OWNER_LANGUAGE_NAME, iso_code, BUSINESS_OWNER_LANGUAGE_CODE)
     print("Translated Text:", translated_text)
 
     # Convertir el texto traducido a formato JSON
@@ -76,7 +77,7 @@ def create_user():
         elif current_to_number:
             # Utilizar el idioma y código ISO almacenado para traducir y enviar el mensaje
             if current_to_language and current_to_iso_code:
-                translated_text = translate_text(body, BUSINESS_OWNER_LANGUAGE_NAME, current_to_language)
+                translated_text = translate_text(body, language, BUSINESS_OWNER_LANGUAGE_NAME, iso_code, BUSINESS_OWNER_LANGUAGE_CODE)
                 translated_text_json = json.loads(translated_text)
                 translated_text_json['from_number'] = BUSINESS_OWNER_PHONE_NUMBER
                 send_whatsapp_message(translated_text_json, current_to_number)
