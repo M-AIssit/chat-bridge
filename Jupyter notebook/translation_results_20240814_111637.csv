@@ -1,0 +1,157 @@
+Source Language,Source ISO Code,Target Language,Target ISO Code,Text Type,Original Text,HF Translated Text,HF Translation Time (s),Gemini Translated Text,Gemini Translation Time (s)
+English,en,Spanish,es,word,Hello,Hola.,1.3585360050201416,,1.2379870414733887
+English,en,Spanish,es,sentence,This is a test sentence.,Esta es una frase de prueba.,0.2865791320800781,,0.8984739780426025
+English,en,Spanish,es,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,Este es un párrafo de prueba con múltiples oraciones. Debe ayudarnos a entender cómo los tiempos de traducción varían con la longitud del texto.,0.803361177444458,,1.082571029663086
+English,en,Chinese,zh,word,Hello,你好 你好 你好 你好 你好 你好 你好 你好 你好,13.740643978118896,,1.316380262374878
+English,en,Chinese,zh,sentence,This is a test sentence.,这是一个试验判决。,0.22876715660095215,,1.3084239959716797
+English,en,Chinese,zh,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,"这是一个带有多个句子的测试段落,应有助于我们理解翻译时间随文本长度的不同而变化。",0.6843557357788086,,2.2611677646636963
+English,en,Arabic,ar,word,Hello,مرحبا مرحبا,1.1046462059020996,,2.0283420085906982
+English,en,Arabic,ar,sentence,This is a test sentence.,هذه عقوبة محكّرة.,0.2668418884277344,,1.1488580703735352
+English,en,Arabic,ar,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,هذه فقرة اختبار ذات جمل متعددة، وينبغي أن تساعدنا على فهم كيف تختلف الترجمة عبر الزمن مع طول النص.,0.9934122562408447,,3.7522997856140137
+English,en,Russian,ru,word,Hello,Привет.,1.2646098136901855,,0.7441580295562744
+English,en,Russian,ru,sentence,This is a test sentence.,Это испытательное предложение.,0.21195077896118164,,1.430616855621338
+English,en,Russian,ru,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,"Это пробный пункт с несколькими предложениями, который должен помочь нам понять, как время перевода зависит от длины текста.",0.7129669189453125,,1.8011870384216309
+English,en,German,de,word,Hello,Guten Tag.,1.4940011501312256,,1.2444560527801514
+English,en,German,de,sentence,This is a test sentence.,Das ist ein Testsatz.,0.2397630214691162,,1.6936511993408203
+English,en,German,de,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,"Dies ist ein Testabschnitt mit mehreren Sätzen. Er sollte uns helfen zu verstehen, wie die Übersetzungszeiten mit der Textlänge variieren.",1.4659051895141602,,1.6602411270141602
+English,en,French,fr,word,Hello,Bonjour.,1.139242172241211,,1.5942959785461426
+English,en,French,fr,sentence,This is a test sentence.,C'est une phrase d'essai.,0.29642319679260254,,2.8664419651031494
+English,en,French,fr,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,Il s'agit d'un paragraphe de test avec plusieurs phrases. Il devrait nous aider à comprendre comment les temps de traduction varient en fonction de la longueur du texte.,1.1287760734558105,,1.0392749309539795
+Spanish,es,English,en,word,Hello,Hello.,1.2553839683532715,,0.7225539684295654
+Spanish,es,English,en,sentence,This is a test sentence.,This is a sentence test.,0.24301600456237793,,0.7194807529449463
+Spanish,es,English,en,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,0.7793700695037842,,1.5199573040008545
+Spanish,es,Chinese,zh,word,Hello,"{""input"": ""Hello"", ""output"": ""你好"", ""src_lang"": ""english"", ""src_lang_code"": ""en"", ""target_lang"": ""chinese"", ""target_lang_code"": ""zh""}
+",2.630890130996704,,1.3782050609588623
+Spanish,es,Chinese,zh,sentence,This is a test sentence.,"{""input"": ""This is a test sentence."", ""output"": ""这是一个测试句子。"", ""src_lang"": ""english"", ""src_lang_code"": ""en"", ""target_lang"": ""chinese"", ""target_lang_code"": ""zh""}
+",2.0359020233154297,,1.5183520317077637
+Spanish,es,Chinese,zh,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,"{""input"": ""This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length."", ""output"": ""这是一个包含多个句子的测试段落。它应该帮助我们了解翻译时间如何随着文本长度而变化。"", ""src_lang"": ""english"", ""src_lang_code"": ""en"", ""target_lang"": ""Chinese"", ""target_lang_code"": ""zh""}
+",1.2370860576629639,,1.5052931308746338
+Spanish,es,Arabic,ar,word,Hello,مِنْ مَحْنَة,2.0991649627685547,,1.3806681632995605
+Spanish,es,Arabic,ar,sentence,This is a test sentence.,حسناً، لا بأس، لا بأس، لا بأس، لا بأس، لا بأس، لا بأس، لا بأس، لا بأس، لا بأس، لا بأس، لا بأس، لا بأس، لا بأس، لا بأس، لا بأس، لا بأس، لا بأس، لا بأس، لا بأس، لا بأس، لا بأس، لا بأس، لا بأس، لا بأس، لا بأس,2.5022132396698,,0.9719321727752686
+Spanish,es,Arabic,ar,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,It should help aus enderstand ho translation Times vary with text Length.,3.2258729934692383,,1.3251457214355469
+Spanish,es,Russian,ru,word,Hello,Hello,1.322613000869751,,1.3301572799682617
+Spanish,es,Russian,ru,sentence,This is a test sentence.,This is a test sentence.,0.3540501594543457,,1.3655321598052979
+Spanish,es,Russian,ru,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,1.077500820159912,,1.9576070308685303
+Spanish,es,German,de,word,Hello,Hello,1.374389886856079,,2.9502298831939697
+Spanish,es,German,de,sentence,This is a test sentence.,This is a test sentence.,0.31681108474731445,,2.7571301460266113
+Spanish,es,German,de,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,This is a test paragraph with multi sentences. It should help us understand how translation times vary with text length.,1.204503059387207,,1.8921692371368408
+Spanish,es,French,fr,word,Hello,Hello,1.6086070537567139,,1.335433006286621
+Spanish,es,French,fr,sentence,This is a test sentence.,This is a test sentence.,0.2710847854614258,,1.120973825454712
+Spanish,es,French,fr,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,1.1909446716308594,,1.4141581058502197
+Chinese,zh,English,en,word,Hello,Hello.,1.3883557319641113,,1.2443571090698242
+Chinese,zh,English,en,sentence,This is a test sentence.,This is a test location.,0.3995399475097656,,1.629969835281372
+Chinese,zh,English,en,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,It should help us understand how transition times vary with text length.,0.6267950534820557,,1.5506830215454102
+Chinese,zh,Spanish,es,word,Hello,"{""input"": ""Hello"", ""output"": ""Hola"", ""src_lang"": ""Chinese"", ""src_lang_code"": ""zh"", ""target_lang"": ""spanish"", ""target_lang_code"": ""es""}
+",2.1974589824676514,,1.4913959503173828
+Chinese,zh,Spanish,es,sentence,This is a test sentence.,"{""input"": ""This is a test sentence."", ""output"": ""Esta es una oración de prueba."", ""src_lang"": ""english"", ""src_lang_code"": ""en"", ""target_lang"": ""spanish"", ""target_lang_code"": ""es""}
+",1.0220363140106201,,1.4996600151062012
+Chinese,zh,Spanish,es,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,"{""input"": ""This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length."", ""output"": ""Este es un párrafo de prueba con varias oraciones. Debería ayudarnos a comprender cómo varían los tiempos de traducción con la longitud del texto."", ""src_lang"": ""english"", ""src_lang_code"": ""en"", ""target_lang"": ""spanish"", ""target_lang_code"": ""es""}
+",1.2419509887695312,,2.0946249961853027
+Chinese,zh,Arabic,ar,word,Hello,"{""input"": ""Hello"", ""output"": ""مرحبا"", ""src_lang"": ""Chinese"", ""src_lang_code"": ""zh"", ""target_lang"": ""Arabic"", ""target_lang_code"": ""ar""}
+",2.402592182159424,,1.000349998474121
+Chinese,zh,Arabic,ar,sentence,This is a test sentence.,"{""input"": ""This is a test sentence."", ""output"": ""هذه جملة اختبار."", ""src_lang"": ""english"", ""src_lang_code"": ""en"", ""target_lang"": ""Arabic"", ""target_lang_code"": ""ar""}
+",2.0003702640533447,,1.4192140102386475
+Chinese,zh,Arabic,ar,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,"{""input"": ""This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length."", ""output"": ""هذه فقرة اختبارية تحتوي على جمل متعددة. من المفترض أن تساعدنا في فهم كيفية اختلاف أوقات الترجمة مع طول النص."", ""src_lang"": ""english"", ""src_lang_code"": ""en"", ""target_lang"": ""Arabic"", ""target_lang_code"": ""ar""}
+",1.6693220138549805,,1.7023723125457764
+Chinese,zh,Russian,ru,word,Hello,"{""input"": ""Hello"", ""output"": ""Привет"", ""src_lang"": ""Chinese"", ""src_lang_code"": ""zh"", ""target_lang"": ""Russian"", ""target_lang_code"": ""ru""}
+",3.315403938293457,,1.7514681816101074
+Chinese,zh,Russian,ru,sentence,This is a test sentence.,"{""input"": ""This is a test sentence."", ""output"": ""Это тестовое предложение."", ""src_lang"": ""Chinese"", ""src_lang_code"": ""zh"", ""target_lang"": ""Russian"", ""target_lang_code"": ""ru""}
+",0.9264540672302246,,1.2350690364837646
+Chinese,zh,Russian,ru,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,"{""input"": ""This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length."", ""output"": ""Это тестовый абзац с несколькими предложениями. Он должен помочь нам понять, как время перевода меняется в зависимости от длины текста."", ""src_lang"": ""English"", ""src_lang_code"": ""en"", ""target_lang"": ""Russian"", ""target_lang_code"": ""ru""}
+",3.25339412689209,,2.876293182373047
+Chinese,zh,German,de,word,Hello,Hallo?,1.2411401271820068,,1.4466350078582764
+Chinese,zh,German,de,sentence,This is a test sentence.,Das ist eine Überraschung.,0.248138427734375,,1.0810019969940186
+Chinese,zh,German,de,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,"Es sollte uns helfen, zu verstehen, wie spät es ist.",0.5382981300354004,,1.3290190696716309
+Chinese,zh,French,fr,word,Hello,"{""input"": ""Hello"", ""output"": ""Bonjour"", ""src_lang"": ""Chinese"", ""src_lang_code"": ""zh"", ""target_lang"": ""French"", ""target_lang_code"": ""fr""}
+",2.498991012573242,,0.6518137454986572
+Chinese,zh,French,fr,sentence,This is a test sentence.,"{""input"": ""This is a test sentence."", ""output"": ""Ceci est une phrase test."", ""src_lang"": ""english"", ""src_lang_code"": ""en"", ""target_lang"": ""French"", ""target_lang_code"": ""fr""}
+",1.3942170143127441,,1.6593141555786133
+Chinese,zh,French,fr,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,"{""input"": ""This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length."", ""output"": ""Ceci est un paragraphe de test avec plusieurs phrases. Il devrait nous aider à comprendre comment les temps de traduction varient en fonction de la longueur du texte."", ""src_lang"": ""english"", ""src_lang_code"": ""en"", ""target_lang"": ""French"", ""target_lang_code"": ""fr""}
+",1.6685988903045654,,0.9705426692962646
+Arabic,ar,English,en,word,Hello,Hello,1.3208303451538086,,1.269300937652588
+Arabic,ar,English,en,sentence,This is a test sentence.,This is a test sentence.,0.23713397979736328,,1.3741400241851807
+Arabic,ar,English,en,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,0.6541798114776611,,1.7403578758239746
+Arabic,ar,Spanish,es,word,Hello,¡Hello!,1.2219188213348389,,1.3310701847076416
+Arabic,ar,Spanish,es,sentence,This is a test sentence.,Tes is a stes sentence.,0.45336389541625977,,2.6365370750427246
+Arabic,ar,Spanish,es,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,Test paragraph with multiple sentences. It shold help us understand how translation times vary with text length.,1.7078211307525635,,2.2919490337371826
+Arabic,ar,Chinese,zh,word,Hello,"{""input"": ""Hello"", ""output"": ""你好"", ""src_lang"": ""Arabic"", ""src_lang_code"": ""ar"", ""target_lang"": ""Chinese"", ""target_lang_code"": ""zh""}
+",1.468353033065796,,1.4510631561279297
+Arabic,ar,Chinese,zh,sentence,This is a test sentence.,"{""input"": ""This is a test sentence."", ""output"": ""这是一句测试句子。"", ""src_lang"": ""Arabic"", ""src_lang_code"": ""ar"", ""target_lang"": ""Chinese"", ""target_lang_code"": ""zh""}
+",1.3538780212402344,,1.4402518272399902
+Arabic,ar,Chinese,zh,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,"{""input"": ""This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length."", ""output"": ""这是一个包含多个句子的测试段落。它应该帮助我们了解翻译时间如何随着文本长度的变化而变化。"", ""src_lang"": ""english"", ""src_lang_code"": ""en"", ""target_lang"": ""Chinese"", ""target_lang_code"": ""zh""}
+",2.8444862365722656,,1.6835520267486572
+Arabic,ar,Russian,ru,word,Hello,Hello.,1.1260268688201904,,3.1867992877960205
+Arabic,ar,Russian,ru,sentence,This is a test sentence.,"- Да, да, да, да, да, да, да, да, да, да, да, да, да, да, да, да, да, да, да.",1.0349700450897217,,2.5184152126312256
+Arabic,ar,Russian,ru,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,1.7733790874481201,,1.7189140319824219
+Arabic,ar,German,de,word,Hello,Halo.,1.2564501762390137,,0.7432858943939209
+Arabic,ar,German,de,sentence,This is a test sentence.,Es ist ein sentance.,0.3743317127227783,,1.2003870010375977
+Arabic,ar,German,de,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,TEES TEST PERARAGRAF MALEL TEENTESTSENZENZ.,0.7584409713745117,,2.685771942138672
+Arabic,ar,French,fr,word,Hello,Hello,1.299926996231079,,1.3885347843170166
+Arabic,ar,French,fr,sentence,This is a test sentence.,This is a test sentence.,0.2761862277984619,,1.0483617782592773
+Arabic,ar,French,fr,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,1.1362709999084473,,1.1813201904296875
+Russian,ru,English,en,word,Hello,Hello.,1.6997742652893066,,0.8337538242340088
+Russian,ru,English,en,sentence,This is a test sentence.,This is a test sentence.,0.3680441379547119,,0.6703588962554932
+Russian,ru,English,en,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,This is a test paragram with multiple views.,1.9286088943481445,,1.7258391380310059
+Russian,ru,Spanish,es,word,Hello,Hola.,1.7802999019622803,,1.0132710933685303
+Russian,ru,Spanish,es,sentence,This is a test sentence.,This is a test sentence.,0.5595557689666748,,1.1546642780303955
+Russian,ru,Spanish,es,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,"This is a test paragraph with multiple sentences, it should help us understand how translation times vary with text length.",1.2246110439300537,,1.4424922466278076
+Russian,ru,Chinese,zh,word,Hello,"{""input"": ""Hello"", ""output"": ""你好"", ""src_lang"": ""Russian"", ""src_lang_code"": ""ru"", ""target_lang"": ""Chinese"", ""target_lang_code"": ""zh""}
+",1.0505709648132324,,1.1377952098846436
+Russian,ru,Chinese,zh,sentence,This is a test sentence.,"{""input"": ""This is a test sentence."", ""output"": ""这是一个测试句子。"", ""src_lang"": ""Russian"", ""src_lang_code"": ""ru"", ""target_lang"": ""Chinese"", ""target_lang_code"": ""zh""}
+",1.3514549732208252,,0.7927978038787842
+Russian,ru,Chinese,zh,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,"{""input"": ""This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length."", ""output"": ""这是一个包含多个句子的测试段落。它应该帮助我们了解翻译时间如何随文本长度而变化。"", ""src_lang"": ""english"", ""src_lang_code"": ""en"", ""target_lang"": ""Chinese"", ""target_lang_code"": ""zh""}
+",1.5411877632141113,,1.34322190284729
+Russian,ru,Arabic,ar,word,Hello,(هيلو) (هيلو) (هيلو) (هيلو) (هيلو) (هيلو) (هيلو) (هيلو) (هيلو) (هيلو) (هيلو) (هيلو) (هيلو) (هيلو) (هيلو) (هيلو) (هيلو) (هيلو),3.4366421699523926,,0.8027439117431641
+Russian,ru,Arabic,ar,sentence,This is a test sentence.,This is a test sentence.,0.5098698139190674,,1.0881547927856445
+Russian,ru,Arabic,ar,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,2.07962703704834,,1.5502395629882812
+Russian,ru,German,de,word,Hello,"{""input"": ""Hello"", ""output"": ""Hallo"", ""src_lang"": ""Russian"", ""src_lang_code"": ""ru"", ""target_lang"": ""German"", ""target_lang_code"": ""de""}
+",0.8088362216949463,,1.1905317306518555
+Russian,ru,German,de,sentence,This is a test sentence.,"{""input"": ""This is a test sentence."", ""output"": ""Dies ist ein Testsatz."", ""src_lang"": ""Russian"", ""src_lang_code"": ""ru"", ""target_lang"": ""German"", ""target_lang_code"": ""de""}
+",1.1121149063110352,,0.9343860149383545
+Russian,ru,German,de,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,"{""input"": ""This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length."", ""output"": ""Dies ist ein Test-Absatz mit mehreren Sätzen. Er soll uns helfen zu verstehen, wie sich die Übersetzungszeiten mit der Textlänge verändern."", ""src_lang"": ""english"", ""src_lang_code"": ""en"", ""target_lang"": ""german"", ""target_lang_code"": ""de""}
+",1.4001829624176025,,1.3677849769592285
+Russian,ru,French,fr,word,Hello,Hello,1.2476017475128174,,1.1755709648132324
+Russian,ru,French,fr,sentence,This is a test sentence.,This is a test sentence.,0.4336278438568115,,1.238081932067871
+Russian,ru,French,fr,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,0.9930951595306396,,1.5620880126953125
+German,de,English,en,word,Hello,Hello,1.3644249439239502,,1.2019259929656982
+German,de,English,en,sentence,This is a test sentence.,This is a test sentence.,0.3016219139099121,,1.240849256515503
+German,de,English,en,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,1.2487561702728271,,0.888477087020874
+German,de,Spanish,es,word,Hello,Hola.,1.4145750999450684,,0.8293249607086182
+German,de,Spanish,es,sentence,This is a test sentence.,Este es un test sentence.,0.33475208282470703,,1.099822759628296
+German,de,Spanish,es,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,Este es un test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,1.4780189990997314,,1.4125230312347412
+German,de,Chinese,zh,word,Hello,你好,1.491034746170044,,1.055283784866333
+German,de,Chinese,zh,sentence,This is a test sentence.,这是一次测试,0.18531394004821777,,1.0637290477752686
+German,de,Chinese,zh,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,这是多元化的测试 paragraphs with multiple sentations. 这应该能帮助我们了解到 how to help us understand how translation times veary with text length.,1.4340059757232666,,1.6429612636566162
+German,de,Arabic,ar,word,Hello,مرحباً,1.1225769519805908,,0.8219468593597412
+German,de,Arabic,ar,sentence,This is a test sentence.,-حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً,4.330995321273804,,1.4813592433929443
+German,de,Arabic,ar,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,حسناً، هذا صحيح، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً، حسناً.,4.725088119506836,,1.605109691619873
+German,de,Russian,ru,word,Hello,"{""input"": ""Hello"", ""output"": ""Привет"", ""src_lang"": ""German"", ""src_lang_code"": ""de"", ""target_lang"": ""Russian"", ""target_lang_code"": ""ru""}
+",1.3700709342956543,,1.2132079601287842
+German,de,Russian,ru,sentence,This is a test sentence.,"{""input"": ""This is a test sentence."", ""output"": ""Это тестовое предложение."", ""src_lang"": ""English"", ""src_lang_code"": ""en"", ""target_lang"": ""Russian"", ""target_lang_code"": ""ru""}
+",1.2256288528442383,,0.8602187633514404
+German,de,Russian,ru,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,"{""input"": ""This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length."", ""output"": ""Это тестовый абзац с несколькими предложениями. Он должен помочь нам понять, как время перевода зависит от длины текста."", ""src_lang"": ""english"", ""src_lang_code"": ""en"", ""target_lang"": ""Russian"", ""target_lang_code"": ""ru""}
+",1.8978078365325928,,1.2338168621063232
+German,de,French,fr,word,Hello,Hello,1.6978182792663574,,1.4774141311645508
+German,de,French,fr,sentence,This is a test sentence.,C'est un test sensence.,0.38873910903930664,,0.8149418830871582
+German,de,French,fr,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,This is a test paragraph with multiple sensences. It should help us understand how translation times vary with text length.,1.1848080158233643,,1.7072482109069824
+French,fr,English,en,word,Hello,Hello.,1.1506881713867188,,0.6419088840484619
+French,fr,English,en,sentence,This is a test sentence.,This is a test sentence.,0.33710265159606934,,1.552243947982788
+French,fr,English,en,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,This is a test paragraph with multiple sentences. It should help us understand how translation times var with text length.,0.7789719104766846,,1.6627709865570068
+French,fr,Spanish,es,word,Hello,Hola.,1.610727310180664,,1.3490979671478271
+French,fr,Spanish,es,sentence,This is a test sentence.,This is a test sentence.,0.8951599597930908,,1.3144659996032715
+French,fr,Spanish,es,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,1.6162447929382324,,0.9638171195983887
+French,fr,Chinese,zh,word,Hello,"{""input"": ""Hello"", ""output"": ""你好"", ""src_lang"": ""French"", ""src_lang_code"": ""fr"", ""target_lang"": ""Chinese"", ""target_lang_code"": ""zh""}
+",1.3388068675994873,,1.3789091110229492
+French,fr,Chinese,zh,sentence,This is a test sentence.,"{""input"": ""This is a test sentence."", ""output"": ""这是一句测试句子。"", ""src_lang"": ""English"", ""src_lang_code"": ""en"", ""target_lang"": ""Chinese"", ""target_lang_code"": ""zh""}
+",0.9294121265411377,,0.8887500762939453
+French,fr,Chinese,zh,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,"{""input"": ""This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length."", ""output"": ""这是一段测试段落，包含多个句子。它应该帮助我们理解翻译时间如何随着文本长度而变化。"", ""src_lang"": ""english"", ""src_lang_code"": ""en"", ""target_lang"": ""chinese"", ""target_lang_code"": ""zh""}
+",1.9492690563201904,,2.072402000427246
+French,fr,Arabic,ar,word,Hello,حسنًا، حسنًا، حسنًا، حسنًا، حسنًا، حسنًا، حسنًا، حسنًا، حسنًا، حسنًا، حسنًا، حسنًا، حسنًا، حسنًا، حسنًا,3.5965938568115234,,0.9875130653381348
+French,fr,Arabic,ar,sentence,This is a test sentence.,تم اختبار الحكم.,0.28314971923828125,,1.392383337020874
+French,fr,Arabic,ar,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,أجرت شركة This is اختباراً لـ paragraph مع عدة قرارات. It shold help op understand ho transteration ternational times ary pany extength.,2.0985288619995117,,1.1951820850372314
+French,fr,Russian,ru,word,Hello,Привет.,1.6343181133270264,,1.623656988143921
+French,fr,Russian,ru,sentence,This is a test sentence.,This is a test sentence.,0.40846896171569824,,1.0934021472930908
+French,fr,Russian,ru,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,1.3011457920074463,,1.1753621101379395
+French,fr,German,de,word,Hello,Hallo,1.4454882144927979,,1.1870810985565186
+French,fr,German,de,sentence,This is a test sentence.,This is a Test Urteil.,0.4187180995941162,,1.3435871601104736
+French,fr,German,de,paragraph,This is a test paragraph with multiple sentences. It should help us understand how translation times vary with text length.,This is a test paragraph with multiple points. It should help us understand how translation times vary with text length.,1.2787389755249023,,1.5889167785644531
