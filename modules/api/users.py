@@ -2,6 +2,7 @@ import json
 import os
 from flask import request
 from dotenv import load_dotenv
+from datetime import datetime, timedelta
 from modules.whatsapp.api import send_whatsapp_message
 from modules.whatsapp.utils import validate_whatsapp_number, format_whatsapp_number, is_valid_phone_number
 from modules.translation.api import detect_language, translate_text
@@ -30,7 +31,7 @@ def create_user():
     body = request.form.get('Body')
 
     # Verificar si el número de teléfono ya está en el CSV
-    language, iso_code = csv_handler.get_language_for_number(from_number)
+    language, iso_code, last_interaction = csv_handler.get_language_for_number(from_number) 
     if not language:
         # Si no está, detectar el idioma y agregarlo al CSV
         detected_language_json = json.loads(detect_language(body))
@@ -46,6 +47,14 @@ def create_user():
     # Convertir el texto traducido a formato JSON
     translated_text_json = json.loads(translated_text)
     translated_text_json['from_number'] = from_number
+
+    ##
+    if has_24_hours_passed(last_interaction):
+        ## Here we send a template or special message
+        print("More than 24 hours has passed since the last message from: ", from_number)
+    else :
+        csv_handler.update_last_interaction(from_number)
+    ##
 
     if from_number != BUSINESS_OWNER_PHONE_NUMBER:
         # Caso 1: El mensaje no es de BUSINESS_OWNER_PHONE_NUMBER
@@ -69,7 +78,7 @@ def create_user():
                 current_to_number = preformatted_current_to_number
 
             # Recuperar y almacenar el idioma y el código ISO del destinatario
-            current_to_language, current_to_iso_code = csv_handler.get_language_for_number(current_to_number)
+            current_to_language, current_to_iso_code, last_interaction = csv_handler.get_language_for_number(current_to_number)
             print(f"Nuevo número de destino asignado: {current_to_number}, Idioma: {current_to_language}, ISO: {current_to_iso_code}")
             translated_text_json['output'] = f"Número de destino actualizado a: {current_to_number}"
             send_whatsapp_message(translated_text_json, BUSINESS_OWNER_PHONE_NUMBER)
@@ -88,3 +97,16 @@ def create_user():
             send_whatsapp_message(translated_text_json, BUSINESS_OWNER_PHONE_NUMBER)
 
     return "List of users"
+
+
+def has_24_hours_passed(last_interaction):
+    # Get the current timestamp with timezone
+    current_time = datetime.now().astimezone()
+
+    # Calculate the time difference between current time and last interaction
+    time_difference = current_time - last_interaction
+
+    # Check if the difference is greater than or equal to 24 hours
+    if time_difference >= timedelta(hours=24):
+        return True
+    return False

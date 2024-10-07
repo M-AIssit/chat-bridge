@@ -16,10 +16,10 @@ class TestCSVHandler(unittest.TestCase):
         # Asegurarse de que el archivo está inicializado
         self.csv_handler.initialize_csv()
 
-    def tearDown(self):
-        # Eliminar el archivo CSV después de las pruebas
-        if os.path.exists(self.test_file):
-            os.remove(self.test_file)
+    # def tearDown(self):
+    #     # Eliminar el archivo CSV después de las pruebas
+    #     if os.path.exists(self.test_file):
+    #         os.remove(self.test_file)
 
     def test_initialize_csv(self):
         # Verificar que el archivo CSV se crea correctamente
