@@ -3,7 +3,7 @@ import os
 from flask import request
 from dotenv import load_dotenv
 from datetime import datetime, timedelta
-from modules.whatsapp.api import send_whatsapp_message
+from modules.whatsapp.api import send_whatsapp_message, send_template
 from modules.whatsapp.utils import validate_whatsapp_number, format_whatsapp_number, is_valid_phone_number
 from modules.translation.api import detect_language, translate_text
 from modules.CSVHandler import CSVHandler
@@ -48,13 +48,12 @@ def create_user():
     translated_text_json = json.loads(translated_text)
     translated_text_json['from_number'] = from_number
 
-    ##
     if has_24_hours_passed(last_interaction):
         ## Here we send a template or special message
+        send_template(from_number)
         print("More than 24 hours has passed since the last message from: ", from_number)
     else :
         csv_handler.update_last_interaction(from_number)
-    ##
 
     if from_number != BUSINESS_OWNER_PHONE_NUMBER:
         # Caso 1: El mensaje no es de BUSINESS_OWNER_PHONE_NUMBER
@@ -102,6 +101,14 @@ def create_user():
 def has_24_hours_passed(last_interaction):
     # Get the current timestamp with timezone
     current_time = datetime.now().astimezone()
+
+    # If last_interaction is None or not a valid datetime, assume no interaction has happened
+    if last_interaction is None:
+        return False  # or True if you want to treat it as if 24 hours has passed
+
+    # If last_interaction is a string, convert it to a datetime object
+    if isinstance(last_interaction, str):
+        last_interaction = datetime.fromisoformat(last_interaction)
 
     # Calculate the time difference between current time and last interaction
     time_difference = current_time - last_interaction

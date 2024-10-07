@@ -1,10 +1,11 @@
 
-from .constants import TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_PHONE_NUMBER, TWILIO_MESSAGING_SERVICE_ID
+from .constants import TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_PHONE_NUMBER, TWILIO_MESSAGING_SERVICE_ID, CONTENT_SID
 from twilio.rest import Client
 from .utils import validate_whatsapp_number, format_whatsapp_number, is_valid_phone_number
 
 
 def send_whatsapp_message(body, to, from_=TWILIO_PHONE_NUMBER):
+    print(TWILIO_PHONE_NUMBER)
     # Asegurarse de que el número esté formateado correctamente antes de validar
     formatted_to = format_whatsapp_number(to)
 
@@ -21,3 +22,13 @@ def send_whatsapp_message(body, to, from_=TWILIO_PHONE_NUMBER):
     )
     print(message.body)
 
+def send_template(to, from_=TWILIO_PHONE_NUMBER):
+    client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+
+    message = client.messages.create(
+        content_sid=CONTENT_SID,
+        to=to,
+        from_= from_,
+    )
+
+    print(message.body)

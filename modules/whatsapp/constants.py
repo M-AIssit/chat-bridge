@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 
 # Load the .env file
-load_dotenv()
+load_dotenv(override=True)
 
 # Twilio API credentials
 TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
@@ -13,3 +13,4 @@ CARLOS_PHONE_NUMBER = os.getenv("CARLOS_PHONE_NUMBER")
 USA_PHONE_NUMBER = os.getenv("USA_PHONE_NUMBER")
 BUSINESS_OWNER_PHONE_NUMBER = os.getenv("BUSINESS_OWNER_PHONE_NUMBER")
 TWILIO_MESSAGING_SERVICE_ID = os.getenv("TWILIO_MESSAGING_SERVICE_ID")
+CONTENT_SID = os.getenv("CONTENT_SID")

@@ -80,7 +80,8 @@ class CSVHandler:
         supabase: Client = create_client(url, key)
 
         # Generate current timestamp with time zone
-        current_timestamp = datetime.now().astimezone()
+        current_timestamp = datetime.now().astimezone().isoformat()
+
 
         data, error = supabase.table('phone_numbers').insert({
             "phone_number": phone_number,
@@ -108,7 +109,7 @@ class CSVHandler:
         supabase: Client = create_client(url, key)
 
         # Generate current timestamp with time zone
-        current_timestamp = datetime.now().astimezone()
+        current_timestamp = datetime.now().astimezone().isoformat()
 
         # Update the last_interaction field for the given phone number
         data, error = supabase.table('phone_numbers').update({
