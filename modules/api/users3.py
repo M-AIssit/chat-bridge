@@ -59,6 +59,7 @@ def handle_owner_message(body):
         update_current_to_number(body[3:].strip())
     elif current_to_number:
         # Si se ha establecido un destinatario, enviar el mensaje traducido al destinatario actual
+
         handle_message(BUSINESS_OWNER_PHONE_NUMBER, body, current_to_language, current_to_number)
     else:
         # No se ha establecido un destinatario
@@ -75,9 +76,8 @@ def handle_message(from_number, body, target_language, to_number):
     # Obtener el idioma del remitente y la última interacción
     language, iso_code, last_interaction = get_or_detect_language(from_number, body)
 
-    # Actualizar la última interacción si es un cliente
-    if from_number != BUSINESS_OWNER_PHONE_NUMBER:
-        csv_handler.update_last_interaction(from_number)
+    # Actualizar la última interacción si es un cliente    
+    csv_handler.update_last_interaction(from_number)
 
     # Verificar si han pasado más de 24 horas
     if should_send_template(last_interaction):
@@ -123,10 +123,19 @@ def should_send_template(last_interaction):
     if last_interaction is None:
         return True
 
-    if isinstance(last_interaction, str):
-        last_interaction = datetime.fromisoformat(last_interaction)
+    # Convertir last_interaction de cadena a objeto datetime
+    try:
+        if isinstance(last_interaction, str):
+            # Usa fromisoformat para convertir el string ISO a datetime con zona horaria
+            last_interaction = datetime.fromisoformat(last_interaction)
+    except ValueError:
+        # Si hay un error en la conversión, consideramos que deben pasar más de 24 horas
+        return True
 
+    # Calcula la diferencia de tiempo entre la hora actual y la última interacción
     time_difference = current_time - last_interaction
+
+    # Verifica si han pasado más de 24 horas
     return time_difference >= timedelta(hours=24)
 
 
