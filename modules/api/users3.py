@@ -49,6 +49,10 @@ def handle_owner_message(body):
     Solo el propietario puede ejecutar comandos como 'exit' o 'to:'.
     """
     global current_to_number, current_to_language, current_to_iso_code
+    from_number = BUSINESS_OWNER_PHONE_NUMBER  # El propietario siempre es el mismo número
+
+    # Actualizar la última interacción del propietario
+    csv_handler.update_last_interaction(from_number)
 
     if body.strip().lower() == "exit":
         # Comando 'exit': Termina la sesión actual
@@ -59,7 +63,6 @@ def handle_owner_message(body):
         update_current_to_number(body[3:].strip())
     elif current_to_number:
         # Si se ha establecido un destinatario, enviar el mensaje traducido al destinatario actual
-
         handle_message(BUSINESS_OWNER_PHONE_NUMBER, body, current_to_language, current_to_number)
     else:
         # No se ha establecido un destinatario
@@ -76,7 +79,7 @@ def handle_message(from_number, body, target_language, to_number):
     # Obtener el idioma del remitente y la última interacción
     language, iso_code, last_interaction = get_or_detect_language(from_number, body)
 
-    # Actualizar la última interacción si es un cliente    
+    # Actualizar la última interacción del remitente (cliente o propietario)
     csv_handler.update_last_interaction(from_number)
 
     # Verificar si han pasado más de 24 horas
@@ -110,6 +113,7 @@ def get_or_detect_language(from_number, body):
         iso_code = detected_language_json.get('ISO_639-1', 'en')
         csv_handler.add_number_language(from_number, language, iso_code)
 
+    print(f"Last Interaction: {last_interaction}")
     return language, iso_code, last_interaction
 
 
@@ -132,10 +136,10 @@ def should_send_template(last_interaction):
         # Si hay un error en la conversión, consideramos que deben pasar más de 24 horas
         return True
 
-    # Calcula la diferencia de tiempo entre la hora actual y la última interacción
+    # Calcular la diferencia de tiempo entre la hora actual y la última interacción
     time_difference = current_time - last_interaction
 
-    # Verifica si han pasado más de 24 horas
+    # Verificar si han pasado más de 24 horas
     return time_difference >= timedelta(hours=24)
 
 
